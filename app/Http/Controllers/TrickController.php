@@ -13,9 +13,9 @@ class TrickController extends Controller
     public function index()
     {
         // Retrieve all tricks from the database
-        $tricks = Trick::all();
+        $tricks = Trick::all('id', 'name', 'description', 'image');
 
-        return view('tricks', compact('tricks'));
+        return view('tricks.index', compact('tricks'));
     }
 
     /**
@@ -37,9 +37,10 @@ class TrickController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Trick $trick)
     {
-        //
+        // Display the specified trick
+        return view('tricks.show', compact('trick'));
     }
 
     /**
