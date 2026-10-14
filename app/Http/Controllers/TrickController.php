@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trick;
 use Illuminate\Http\Request;
 
 class TrickController extends Controller
@@ -12,7 +13,14 @@ class TrickController extends Controller
     public function index()
     {
         //
-        return view('welcome');
+        $trick = new Trick();
+        $trick->name = 'front flip';
+        $trick->description = 'A front flip is a trick where you flip forward in the air.';
+        $trick->image = 'front_flip.jpg';
+        $trick->status = true;
+        $trick->user_id = 1;
+
+        return view('tricks', compact('trick'));
     }
 
     /**

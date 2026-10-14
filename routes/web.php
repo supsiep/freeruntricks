@@ -24,4 +24,4 @@ Route::view('/home', 'welcome')->name('home');
 Route::view('/contact', 'contact')->name('contact');
 Route::view('/about', 'about')->name('about');
 
-//Route::resource('tricks', TrickController::class, (array)'index')->name('tricks.index');
+Route::get('/tricks', [TrickController::class, 'index']);
