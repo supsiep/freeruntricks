@@ -12,15 +12,10 @@ class TrickController extends Controller
      */
     public function index()
     {
-        //
-        $trick = new Trick();
-        $trick->name = 'front flip';
-        $trick->description = 'A front flip is a trick where you flip forward in the air.';
-        $trick->image = 'front_flip.jpg';
-        $trick->status = true;
-        $trick->user_id = 1;
+        // Retrieve all tricks from the database
+        $tricks = Trick::all();
 
-        return view('tricks', compact('trick'));
+        return view('tricks', compact('tricks'));
     }
 
     /**

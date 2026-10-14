@@ -32,6 +32,7 @@
         <x-navlink href="{{ route('home') }}">Home</x-navlink>
         <x-navlink href="{{ route('contact') }}">Contact</x-navlink>
         <x-navlink href="{{ route('about') }}">About</x-navlink>
+        <x-navlink href="{{ route('tricks.index') }}">Tricks</x-navlink>
     </nav>
 
     {{ $slot }}
