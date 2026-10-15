@@ -12,8 +12,10 @@ class TrickController extends Controller
      */
     public function index()
     {
+
         // Retrieve all tricks from the database
-        $tricks = Trick::all('id', 'name', 'description', 'image');
+        $tricks = Trick::with('comments')->get(['id', 'name', 'description', 'image']);
+//        $tricks = Trick::all('id', 'name', 'description', 'image');
 
         return view('tricks.index', compact('tricks'));
     }
@@ -56,6 +58,8 @@ class TrickController extends Controller
     public function show(Trick $trick)
     {
         // Display the specified trick
+
+        $trick->load('comments');
         return view('tricks.show', compact('trick'));
     }
 
