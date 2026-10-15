@@ -24,6 +24,7 @@ class TrickController extends Controller
     public function create()
     {
         //
+        return view('tricks.create');
     }
 
     /**
@@ -32,6 +33,21 @@ class TrickController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|max:255|min:3',
+            'description' => 'required|min:3',
+            'image' => 'required',
+        ]);
+
+        $trick = new Trick();
+        $trick->name = $request->input('name');
+        $trick->description = $request->input('description');
+        $trick->image = $request->input('image');
+        $trick->user_id = 1;
+
+        $trick->save();
+
+        return redirect(route('tricks.index'));
     }
 
     /**

@@ -6,4 +6,3 @@
 
     @endfor
 </x-layout>
-

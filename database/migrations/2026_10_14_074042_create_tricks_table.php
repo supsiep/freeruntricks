@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('image', 255);
             $table->boolean('status')->default(true);
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
 
             $table->timestamps();
         });

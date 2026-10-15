@@ -25,4 +25,6 @@ Route::view('/contact', 'contact')->name('contact');
 Route::view('/about', 'about')->name('about');
 
 Route::get('/tricks', [TrickController::class, 'index'])->name('tricks.index');
+Route::post('/tricks', [TrickController::class, 'store'])->name('tricks.store');
+Route::get('trick/create', [TrickController::class, 'create'])->name('tricks.create');
 Route::get('/tricks/{trick}', [TrickController::class, 'show'])->name('tricks.show');
