@@ -27,5 +27,7 @@ Route::view('/about', 'about')->name('about');
 Route::get('/tricks', [TrickController::class, 'index'])->name('tricks.index');
 Route::post('/tricks', [TrickController::class, 'store'])->name('tricks.store');
 Route::get('tricks/create', [TrickController::class, 'create'])->name('tricks.create');
+Route::get('tricks/{trick}/edit', [TrickController::class, 'edit'])->name('tricks.edit');
+Route::put('tricks/{trick}', [TrickController::class, 'update'])->name('tricks.update');
 Route::delete('tricks/{trick}', [TrickController::class, 'destroy'])->name('tricks.destroy');
 Route::get('/tricks/{trick}', [TrickController::class, 'show'])->name('tricks.show');

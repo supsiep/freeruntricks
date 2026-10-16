@@ -66,17 +66,31 @@ class TrickController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Trick $trick)
     {
-        //
+        // Show the form for editing the specified trick
+        return view('tricks.edit', compact('trick'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Trick $trick)
     {
-        //
+        // Update trick in database
+        $request->validate([
+            'name' => 'required|max:255|min:3',
+            'description' => 'required|min:3',
+            'image' => 'required',
+        ]);
+
+        $trick->name = $request->input('name');
+        $trick->description = $request->input('description');
+        $trick->image = $request->input('image');
+
+        $trick->save();
+
+        return redirect()->route('tricks.index');
     }
 
     /**

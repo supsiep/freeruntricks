@@ -12,4 +12,6 @@
         @method('DELETE')
         <button type="submit">Delete Trick</button>
     </form>
+
+    <a href="{{ route('tricks.edit', $trick->id) }}">Edit Trick</a>
 </x-layout>
