@@ -10,11 +10,13 @@
         </div>
         <div>
             <label for="description">Description</label>
-            <input type="text" id="description" name="description">
+            <input type="text" id="description" name="description" value="{{old('description')}}">
+            @error('description') <span>{{$message}}</span> @enderror
         </div>
         <div>
             <label for="image">Image</label>
-            <input type="text" id="image" name="image">
+            <input type="text" id="image" name="image" value="{{old('image')}}">
+            @error('image') <span>{{$message}}</span> @enderror
         </div>
         <div>
             <input type="submit" value="Create Trick">

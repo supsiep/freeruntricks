@@ -25,7 +25,7 @@ class TrickController extends Controller
      */
     public function create()
     {
-        //
+        // Show the form for creating a new trick
         return view('tricks.create');
     }
 
@@ -34,7 +34,7 @@ class TrickController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Store a newly created trick in storage.
         $request->validate([
             'name' => 'required|max:255|min:3',
             'description' => 'required|min:3',
@@ -82,8 +82,10 @@ class TrickController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Trick $trick)
     {
-        //
+        // Delete the specified trick
+        $trick->delete();
+        return redirect()->route('tricks.index');
     }
 }

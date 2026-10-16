@@ -8,4 +8,8 @@
         @empty
             <p>No comments yet.</p>
     @endforelse
+    <form action="{{ route('tricks.destroy', $trick->id) }}" method="POST">
+        @method('DELETE')
+        <button type="submit">Delete Trick</button>
+    </form>
 </x-layout>
