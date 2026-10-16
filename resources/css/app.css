@@ -1,3 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+nav {
+    background-color: #f0f0f0;
+    padding: 1rem;
+
+}
+
+.nav-container {
+    display: flex;
+    /*justify-content: space-between;*/
+    margin: 0 20vw;
+    gap: 5vw;
+}
+
+a.nav {
+    color: black;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+}
+
+a.active-url {
+    color: green;
+}
+
+.nav-tricks-container {
+
+}
+
+.main-content {
+    margin: 2rem 20vw;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+}
+
+.trick-card {
+    padding: 0;
+}
+
+.card-image {
+    padding: 0;
+}
+
+.trick-info-container {
+    padding: 0;
+}
+
+.card-name {
+    padding: 0;
+}
+
+.card-text {
+    padding: 0;
+}
