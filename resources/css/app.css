@@ -2,26 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --font-main: "Oswald", sans-serif;
+    --color-main: #41A24C;
+    --color-gray: #F3F4F6;
+    --color-text: #000000;
+    --color-white: #ffffff;
+}
+
 * {
     box-sizing: border-box;
 }
 
-nav {
-    background-color: #f0f0f0;
-    padding: 1rem;
+body {
+    font-family: var(--font-main);
+}
 
+h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-main);
+    padding: 0 0 10px 0;
+}
+
+p {
+    font-size: 16px;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+/** Navigation Styles **/
+
+nav {
+    background-color: var(--color-gray);
+    padding: 1rem;
 }
 
 .nav-container {
     display: flex;
-    /*justify-content: space-between;*/
+    justify-content: space-between;
     margin: 0 20vw;
     gap: 5vw;
 }
 
 a.nav {
     color: black;
-    font-family: "Oswald", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
@@ -29,36 +54,99 @@ a.nav {
 }
 
 a.active-url {
-    color: green;
+    color: var(--color-main);
 }
 
-.nav-tricks-container {
-
-}
+/** Main Content Styles **/
 
 .main-content {
     margin: 2rem 20vw;
-    background-color: lightgrey;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
 }
 
 .trick-card {
     padding: 0;
+    margin: 0;
+    background-color: var(--color-gray);
 }
 
 .card-image {
-    padding: 0;
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .trick-info-container {
-    padding: 0;
+    padding: 16px 10px;
+    margin: 0;
 }
 
 .card-name {
-    padding: 0;
+    padding: 0 0 6px 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-main);
 }
 
 .card-text {
     padding: 0;
+    font-size: 16px;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+/*show style*/
+
+.trick-show {
+    margin: 2rem 20vw;
+}
+
+.trick-show {
+    display: flex;
+    gap: 20px;
+}
+
+.show-container {
+    background-color: var(--color-gray);
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 16px;
+}
+
+.show-image-container {
+    width: 50%;
+}
+
+.show-info-container {
+    padding: 0  0 32px 0;
+}
+
+.show-buttons-container {
+    display: flex;
+    gap: 10px;
+}
+
+.show-button {
+    background-color: var(--color-main);
+    color: var(--color-white);
+    padding: 10px;
+}
+
+.show-comments-container {
+    padding: 0;
+}
+
+/** Responsive Styles **/
+
+@media (max-width: 768px) {
+    .main-content {
+        margin: 2rem 10vw;
+        grid-template-columns: 1fr;
+    }
+    .trick-show {
+        margin: 2rem 10vw;
+    }
 }

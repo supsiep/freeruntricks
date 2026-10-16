@@ -21,18 +21,16 @@
 <body>
     <nav>
         <div class="nav-container">
-{{--            <x-navlink href="{{ route('home') }}">Home</x-navlink>--}}
             <x-navlink href="{{ route('tricks.index') }}">Tricks</x-navlink>
             <x-navlink href="{{ route('tricks.create') }}">Add Your Trick</x-navlink>
             <x-navlink href="{{ route('contact') }}">Contact</x-navlink>
             <x-navlink href="{{ route('about') }}">About</x-navlink>
+            <div class="flex-grow"></div>
+            <x-navlink href="">Login</x-navlink>
         </div>
     </nav>
 
-    <section class="main-content">
         {{ $slot }}
-    </section>
-
 
 </body>
 </html>
