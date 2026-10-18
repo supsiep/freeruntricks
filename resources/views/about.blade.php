@@ -1,4 +1,8 @@
 <x-layout title="About">
-    <h1>About</h1>
-    <p>This is the about page.</p>
+    <section class="about">
+        <h1>About</h1>
+        <div class="extra-content">
+            <p>This is the about page.</p>
+        </div>
+    </section>
 </x-layout>

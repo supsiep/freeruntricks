@@ -18,6 +18,12 @@ body {
     font-family: var(--font-main);
 }
 
+h1 {
+    color: var(--color-text);
+    font-size: 40px;
+    font-weight: 800;
+}
+
 h2 {
     font-size: 32px;
     font-weight: 800;
@@ -61,6 +67,10 @@ a.active-url {
 
 .main-content {
     margin: 2rem 20vw;
+
+}
+
+.tricks-container {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
@@ -132,11 +142,58 @@ a.active-url {
 .show-button {
     background-color: var(--color-main);
     color: var(--color-white);
-    padding: 10px;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.show-button:hover {
+    background-color: var(--color-text);
+    color: var(--color-white);
 }
 
 .show-comments-container {
     padding: 0;
+}
+
+/*trick create*/
+
+.trick-create, .trick-edit {
+    margin: 2rem 20vw;
+}
+
+.form-container {
+    background-color: var(--color-gray);
+    padding: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 0 16px 0;
+}
+
+label {
+    color: var(--color-main);
+    font-size: 20px;
+}
+
+.submit-button {
+    background-color: var(--color-main);
+    color: var(--color-white);
+    padding: 8px;
+    font-size: 18px;
+}
+
+/*extra's*/
+
+.about, .contact {
+    margin: 2rem 20vw;
+}
+
+.extra-content {
+    background-color: var(--color-gray);
+    padding: 16px;
 }
 
 /** Responsive Styles **/

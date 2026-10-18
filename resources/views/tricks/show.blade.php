@@ -7,6 +7,9 @@
                 <p>{{ $trick->description }}</p>
             </div>
 
+
+
+            {{--            comments van de trick--}}
             <div class="show-buttons-container">
                 <form action="{{ route('tricks.destroy', $trick->id) }}" method="POST">
                     @method('DELETE')
@@ -15,6 +18,7 @@
                 <a class="show-button" href="{{ route('tricks.edit', $trick->id) }}">Edit Trick</a>
             </div>
 
+{{--            comments van de trick--}}
             <div class="show-comments-container">
                 <h2>Comments</h2>
                 @forelse($trick->comments as $comment)

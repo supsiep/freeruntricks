@@ -1,6 +1,9 @@
 <x-layout>
 
     <section class="main-content">
+        <h1>FreeRun Tricks</h1>
+
+        <div class="tricks-container">
 
     @for($i = 0; $i < count($tricks); $i++)
 
@@ -16,6 +19,8 @@
         </a>
 
     @endfor
+
+        </div>
 
     </section>
 
