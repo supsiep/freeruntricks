@@ -14,7 +14,6 @@ class TrickController extends Controller
     {
 
         // Retrieve all tricks from the database
-//        $tricks = Trick::with('comments')->get(['id', 'name', 'description', 'image', 'status']);
         $search = isset($_GET['search']) ? $_GET['search'] : '';
         if (isset($_GET['search']) && $_GET['search'] !== '') {
             $tricks = Trick::with('comments', 'label')->where('name', 'like', '%' . $_GET['search'] . '%')->get(['id', 'name', 'description', 'image', 'status']);

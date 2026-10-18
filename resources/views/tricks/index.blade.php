@@ -3,12 +3,27 @@
     <section class="main-content">
         <h1>FreeRun Tricks</h1>
 
-        <div class="search-container">
-            <form action="" method="GET">
+        <div class="view-container">
+            <div class="search-container">
+                <form action="" method="GET">
                     <label for="search">Search a for trick:</label>
                     <input type="search" id="search" name="search" value="{{ $search }}">
-                <button class="submit-button" type="submit">Search</button>
-            </form>
+                    <button class="submit-button" type="submit">Search</button>
+                </form>
+            </div>
+
+            <div class="search-container">
+                <form action="" method="GET">
+                    <label for="filter" >Filter by status:</label>
+                    <select name="filter" id="filter">
+
+                        <option value="">All</option>
+{{--                        @foreach($labels as $label)--}}
+{{--                            <option value="{{ $label->id }}">{{ $label->name }}</option>--}}
+{{--                        @endforeach--}}
+                    </select>
+                </form>
+            </div>
         </div>
 
         <div class="tricks-container">
