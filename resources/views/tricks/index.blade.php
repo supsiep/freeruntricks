@@ -3,6 +3,14 @@
     <section class="main-content">
         <h1>FreeRun Tricks</h1>
 
+        <div class="search-container">
+            <form action="" method="GET">
+                    <label for="search">Search a for trick:</label>
+                    <input type="search" id="search" name="search" value="{{ $search }}">
+                <button class="submit-button" type="submit">Search</button>
+            </form>
+        </div>
+
         <div class="tricks-container">
 
     @for($i = 0; $i < count($tricks); $i++)

@@ -185,15 +185,42 @@ label {
     font-size: 18px;
 }
 
+.submit-button:hover {
+    background-color: var(--color-text);
+    color: var(--color-white);
+}
+
 /*extra's*/
 
-.about, .contact {
+.about, .contact, .welcome-section {
     margin: 2rem 20vw;
 }
 
 .extra-content {
     background-color: var(--color-gray);
     padding: 16px;
+}
+
+.welcome-content {
+    display: flex;
+    gap: 20px;
+}
+
+.welcome-image, .welcome-text{
+    width: 50%;
+}
+
+/*search*/
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.search-group {
+    flex-direction: column;
+    gap: 6px;
 }
 
 /** Responsive Styles **/
