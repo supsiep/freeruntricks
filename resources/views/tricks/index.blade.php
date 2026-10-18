@@ -6,6 +6,7 @@
         <div class="tricks-container">
 
     @for($i = 0; $i < count($tricks); $i++)
+        @if($tricks[$i]->status == 1)
 
         <a href="{{ route('tricks.show', $tricks[$i]->id) }}">
             <div class="trick-card">
@@ -17,6 +18,7 @@
                 </div>
             </div>
         </a>
+                @endif
 
     @endfor
 

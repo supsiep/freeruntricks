@@ -14,8 +14,8 @@ class TrickController extends Controller
     {
 
         // Retrieve all tricks from the database
-        $tricks = Trick::with('comments')->get(['id', 'name', 'description', 'image']);
-//        $tricks = Trick::all('id', 'name', 'description', 'image');
+//        $tricks = Trick::with('comments')->get(['id', 'name', 'description', 'image', 'status']);
+        $tricks = Trick::with('comments', 'label')->get(['id', 'name', 'description', 'image', 'status']);
 
         return view('tricks.index', compact('tricks'));
     }
