@@ -1,5 +1,4 @@
 <x-layout>
-
     <section class="main-content">
         <h1>FreeRun Tricks</h1>
 
@@ -15,12 +14,12 @@
             <div class="search-container">
                 <form action="" method="GET">
                     <label for="filter" >Filter by status:</label>
-                    <select name="filter" id="filter">
+                    <select name="filter" id="filter" onchange="this.form.submit()">
 
                         <option value="">All</option>
-{{--                        @foreach($labels as $label)--}}
-{{--                            <option value="{{ $label->id }}">{{ $label->name }}</option>--}}
-{{--                        @endforeach--}}
+                        @foreach($labels as $label)
+                            <option value="{{ $label->id }}" @selected($filter == $label->id)>{{ $label->name }}</option>
+                        @endforeach
                     </select>
                 </form>
             </div>

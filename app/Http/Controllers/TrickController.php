@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Label;
 use App\Models\Trick;
 use Illuminate\Http\Request;
 
@@ -10,18 +11,34 @@ class TrickController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
         // Retrieve all tricks from the database
-        $search = isset($_GET['search']) ? $_GET['search'] : '';
-        if (isset($_GET['search']) && $_GET['search'] !== '') {
-            $tricks = Trick::with('comments', 'label')->where('name', 'like', '%' . $_GET['search'] . '%')->get(['id', 'name', 'description', 'image', 'status']);
-        } else {
-            $tricks = Trick::with('comments', 'label')->get(['id', 'name', 'description', 'image', 'status']);
-        }
+//        $search = isset($_GET['search']) ? $_GET['search'] : '';
+//        if (isset($_GET['search']) && $_GET['search'] !== '') {
+//            $tricks = Trick::with('comments', 'label')->where('name', 'like', '%' . $_GET['search'] . '%')->get(['id', 'name', 'description', 'image', 'status']);
+//        } else {
+//            $tricks = Trick::with('comments', 'label')->get(['id', 'name', 'description', 'image', 'status']);
+//        }
 
-        return view('tricks.index', compact('tricks', 'search'));
+        $search = $request->input('search');
+        $filter = $request->input('filter');
+
+        $labels = Label::query()->orderBy('name')->get();
+
+        $tricks = Trick::with(['comments', 'labels'])
+            ->when($search, function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->when($filter, function ($query) use ($filter) {
+                $query->whereHas('labels', function ($query) use ($filter) {
+                    $query->where('id', $filter);
+                });
+            })
+            ->get(['id', 'name', 'description', 'image', 'status']);
+
+        return view('tricks.index', compact('tricks', 'labels', 'search', 'filter'));
     }
 
     /**

@@ -13,7 +13,7 @@ class Trick extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function label() {
-        return $this->hasOne(TrickLabel::class);
+    public function labels() {
+        return $this->belongsToMany(Label::class, 'trick_labels');
     }
 }
