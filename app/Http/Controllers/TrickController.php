@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Label;
 use App\Models\Trick;
+use App\Models\TrickLabel;
 use Illuminate\Http\Request;
 
 class TrickController extends Controller
@@ -15,17 +17,9 @@ class TrickController extends Controller
     {
 
         // Retrieve all tricks from the database
-//        $search = isset($_GET['search']) ? $_GET['search'] : '';
-//        if (isset($_GET['search']) && $_GET['search'] !== '') {
-//            $tricks = Trick::with('comments', 'label')->where('name', 'like', '%' . $_GET['search'] . '%')->get(['id', 'name', 'description', 'image', 'status']);
-//        } else {
-//            $tricks = Trick::with('comments', 'label')->get(['id', 'name', 'description', 'image', 'status']);
-//        }
 
         $search = $request->input('search');
         $filter = $request->input('filter');
-
-
 
         $labels = Label::query()->orderBy('name')->get();
 
@@ -62,6 +56,7 @@ class TrickController extends Controller
             'name' => 'required|max:255|min:3',
             'description' => 'required|min:3',
             'image' => 'required',
+//            hier komt het label
         ]);
 
         $trick = new Trick();
@@ -69,6 +64,8 @@ class TrickController extends Controller
         $trick->description = $request->input('description');
         $trick->image = $request->input('image');
         $trick->user_id = 1;
+
+//        hier komt de verbinding met het label
 
         $trick->save();
 
@@ -105,11 +102,14 @@ class TrickController extends Controller
             'name' => 'required|max:255|min:3',
             'description' => 'required|min:3',
             'image' => 'required',
+//            hier komt de label
         ]);
 
         $trick->name = $request->input('name');
         $trick->description = $request->input('description');
         $trick->image = $request->input('image');
+
+//        hier komt de verbinding met het label
 
         $trick->save();
 
@@ -122,6 +122,15 @@ class TrickController extends Controller
     public function destroy(Trick $trick)
     {
         // Delete the specified trick
+        //hier komt de verbinding met het label
+        $labels = TrickLabel::query()->where('trick_id', $trick->id)->get();
+        foreach ($labels as $label) {
+            $label->delete();
+        }
+        $comments = Comment::query()->where('trick_id', $trick->id)->get();
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
         $trick->delete();
         return redirect()->route('tricks.index');
     }
