@@ -3,7 +3,7 @@
     <h1>Edit Trick</h1>
 
     <div class="form-container">
-    <form action="{{ route('tricks.update', $trick->id) }}" method="POST">
+    <form action="{{ route('tricks.update', $trick->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="form-group">
@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label for="image">Image:</label>
-            <input type="text" name="image" id="image" value="{{ $trick->image }}">
+            <input type="file" id="image" name="image" accept="image/png, image/webp, image/jpeg, image/jpg, image/gif" value="{{old('image')}}">
         </div>
         <div class="form-group">
             <label for="label">Label</label>

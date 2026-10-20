@@ -31,7 +31,7 @@
         </div>
 
         <div class="show-image-container">
-            <img src="{{ asset($trick->image) }}.jpg" alt="{{ $trick->name }}">
+            <img src="{{ Storage::url($trick->image) }}" alt="{{ $trick->name }}">
         </div>
 
 

@@ -4,7 +4,7 @@
 
     <h1>Create a New Trick</h1>
         <div class="form-container">
-            <form action="{{route('tricks.store')}}" method="POST">
+            <form action="{{route('tricks.store')}}" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" value="{{old('name')}}">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
-                    <input type="text" id="image" name="image" value="{{old('image')}}">
+                    <input type="file" id="image" name="image" accept="image/png, image/webp, image/jpeg, image/jpg, image/gif" value="{{old('image')}}">
                     @error('image') <span>{{$message}}</span> @enderror
                 </div>
                 <div class="form-group">
