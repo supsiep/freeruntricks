@@ -3,30 +3,27 @@
         <h1>FreeRun Tricks</h1>
 
         <div class="view-container">
-            <div class="search-container">
-                <form action="" method="GET">
-                    <label for="search">Search a for trick:</label>
-                    <input type="search" id="search" name="search" value="{{ $search }}">
-                    <button class="submit-button" type="submit">Search</button>
-                </form>
-            </div>
+                <form class="search-form" action="" method="GET">
+                    <div class="search-container">
+                        <label for="search">Search a for trick:</label>
+                        <input type="search" id="search" name="search" value="{{ $search }}">
+                        <button class="submit-button" type="submit">Search</button>
+                    </div>
 
-            <div class="search-container">
-                <form action="" method="GET">
-                    <label for="filter" >Filter by status:</label>
-                    <select name="filter" id="filter" onchange="this.form.submit()">
+                    <div class="search-container">
+                        <label for="filter" >Filter by status:</label>
+                        <select name="filter" id="filter" onchange="this.form.submit()">
 
-                        <option value="">All</option>
-                        @foreach($labels as $label)
-                            <option value="{{ $label->id }}" @selected($filter == $label->id)>{{ $label->name }}</option>
-                        @endforeach
-                    </select>
+                            <option value="">All</option>
+                            @foreach($labels as $label)
+                                <option value="{{ $label->id }}" @selected($filter == $label->id)>{{ $label->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </form>
-            </div>
         </div>
 
         <div class="tricks-container">
-
     @for($i = 0; $i < count($tricks); $i++)
         @if($tricks[$i]->status == 1)
 

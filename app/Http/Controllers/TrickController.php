@@ -25,6 +25,8 @@ class TrickController extends Controller
         $search = $request->input('search');
         $filter = $request->input('filter');
 
+
+
         $labels = Label::query()->orderBy('name')->get();
 
         $tricks = Trick::with(['comments', 'labels'])
@@ -32,8 +34,8 @@ class TrickController extends Controller
                 $query->where('name', 'like', '%' . $search . '%');
             })
             ->when($filter, function ($query) use ($filter) {
-                $query->whereHas('labels', function ($query) use ($filter) {
-                    $query->where('id', $filter);
+                $query->whereHas('labels', function ($labelQuery) use ($filter) {
+                    $labelQuery->whereKey($filter);
                 });
             })
             ->get(['id', 'name', 'description', 'image', 'status']);

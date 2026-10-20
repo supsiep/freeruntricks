@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Label extends Model
 {
     //
-    public function labels() {
-        return $this->belongstoMany(Label::class, 'trick_labels');
+    public function tricks(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongstoMany(Trick::class, 'trick_labels');
     }
 }
