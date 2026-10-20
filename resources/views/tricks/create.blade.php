@@ -22,6 +22,15 @@
                     <input type="text" id="image" name="image" value="{{old('image')}}">
                     @error('image') <span>{{$message}}</span> @enderror
                 </div>
+                <div class="form-group">
+                    <label for="label">Label</label>
+                    <select name="label" id="label">
+                        @foreach($labels as $label)
+                            <option value="{{$label->id}}">{{$label->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('label') <span>{{ $message }}</span> @enderror
+                </div>
                 <div>
                     <button class="submit-button" type="submit">Create Trick</button>
                 </div>

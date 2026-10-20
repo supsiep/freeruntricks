@@ -18,6 +18,15 @@
             <label for="image">Image:</label>
             <input type="text" name="image" id="image" value="{{ $trick->image }}">
         </div>
+        <div class="form-group">
+            <label for="label">Label</label>
+            <select name="label" id="label">
+                @foreach($labels as $label)
+                    <option value="{{$label->id}}" @selected($trick->labels->contains($label->id))>{{$label->name}}</option>
+                @endforeach
+            </select>
+            @error('label') <span>{{ $message }}</span> @enderror
+        </div>
         <button class="submit-button" type="submit">Update Trick</button>
     </form>
     </div>

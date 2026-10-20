@@ -43,7 +43,8 @@ class TrickController extends Controller
     public function create()
     {
         // Show the form for creating a new trick
-        return view('tricks.create');
+        $labels = Label::all();
+        return view('tricks.create', compact('labels'));
     }
 
     /**
@@ -56,6 +57,7 @@ class TrickController extends Controller
             'name' => 'required|max:255|min:3',
             'description' => 'required|min:3',
             'image' => 'required',
+            'label' => 'required|exists:labels,id'
 //            hier komt het label
         ]);
 
@@ -65,9 +67,8 @@ class TrickController extends Controller
         $trick->image = $request->input('image');
         $trick->user_id = 1;
 
-//        hier komt de verbinding met het label
-
         $trick->save();
+        $trick->labels()->attach($request->input('label'));
 
         return redirect(route('tricks.index'));
     }
@@ -88,8 +89,9 @@ class TrickController extends Controller
      */
     public function edit(Trick $trick)
     {
+        $labels = Label::all();
         // Show the form for editing the specified trick
-        return view('tricks.edit', compact('trick'));
+        return view('tricks.edit', compact('trick', 'labels'));
     }
 
     /**
@@ -102,14 +104,14 @@ class TrickController extends Controller
             'name' => 'required|max:255|min:3',
             'description' => 'required|min:3',
             'image' => 'required',
-//            hier komt de label
+            'label' => 'required|exists:labels,id'
         ]);
 
         $trick->name = $request->input('name');
         $trick->description = $request->input('description');
         $trick->image = $request->input('image');
 
-//        hier komt de verbinding met het label
+        $trick->labels()->sync([$request->input('label')]);
 
         $trick->save();
 
