@@ -9,14 +9,17 @@
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" value="{{ $trick->name }}">
+            <span>@error('name') {{ $message }} @enderror</span>
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
             <textarea name="description" id="description">{{ $trick->description }}</textarea>
+            <span>@error('description') {{ $message }} @enderror</span>
         </div>
         <div class="form-group">
             <label for="image">Image:</label>
-            <input type="file" id="image" name="image" accept="image/png, image/webp, image/jpeg, image/jpg, image/gif" value="{{old('image')}}">
+            <input type="file" id="image" name="image" accept="image/png, image/webp, image/jpeg, image/jpg, image/gif" value="{{ old('image') }}">
+            <span>@error('image') {{ $message }} @enderror</span>
         </div>
         <div class="form-group">
             <label for="label">Label</label>

@@ -103,13 +103,15 @@ class TrickController extends Controller
         $request->validate([
             'name' => 'required|max:255|min:3',
             'description' => 'required|min:3',
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
             'label' => 'required|exists:labels,id'
         ]);
 
         $trick->name = $request->input('name');
         $trick->description = $request->input('description');
-        $trick->image = $request->file('image')->store('tricks', 'public');
+        if ($request->hasFile('image')) {
+            $trick->image = $request->file('image')->store('tricks', 'public');
+        }
 
         $trick->labels()->sync([$request->input('label')]);
 
