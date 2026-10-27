@@ -5,6 +5,7 @@
     <h1>Create a New Trick</h1>
         <div class="form-container">
             <form action="{{route('tricks.store')}}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" value="{{old('name')}}">

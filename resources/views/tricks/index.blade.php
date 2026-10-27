@@ -4,6 +4,7 @@
 
         <div class="view-container">
                 <form class="search-form" action="" method="GET">
+                    @csrf
                     <div class="search-container">
                         <label for="search">Search a for trick:</label>
                         <input type="search" id="search" name="search" value="{{ $search }}">

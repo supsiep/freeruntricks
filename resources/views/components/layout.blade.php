@@ -26,7 +26,18 @@
             <x-navlink href="{{ route('contact') }}">Contact</x-navlink>
             <x-navlink href="{{ route('about') }}">About</x-navlink>
             <div class="flex-grow"></div>
-            <x-navlink href="">Login</x-navlink>
+            @auth
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <x-navlink>
+                        <button type="submit">Logout</button>
+                    </x-navlink>
+                </form>
+            @endauth
+            @guest
+                <x-navlink href="{{ route('login') }}">Login</x-navlink>
+                <x-navlink href="{{ route('register') }}">Register</x-navlink>
+            @endguest
         </div>
     </nav>
 

@@ -58,14 +58,13 @@ class TrickController extends Controller
             'description' => 'required|min:3',
             'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
             'label' => 'required|exists:labels,id'
-//            hier komt het label
         ]);
 
         $trick = new Trick();
         $trick->name = $request->input('name');
         $trick->description = $request->input('description');
         $trick->image = $request->file('image')->store('tricks', 'public');
-        $trick->user_id = 1;
+        $trick->user_id = auth()->user()->id;
 
         $trick->save();
         $trick->labels()->attach($request->input('label'));
@@ -79,7 +78,6 @@ class TrickController extends Controller
     public function show(Trick $trick)
     {
         // Display the specified trick
-
         $trick->load('comments');
         return view('tricks.show', compact('trick'));
     }
@@ -89,9 +87,13 @@ class TrickController extends Controller
      */
     public function edit(Trick $trick)
     {
-        $labels = Label::all();
-        // Show the form for editing the specified trick
-        return view('tricks.edit', compact('trick', 'labels'));
+        if (auth()->id() !== $trick->user_id) {
+            abort(404);
+        } else {
+            $labels = Label::all();
+            // Show the form for editing the specified trick
+            return view('tricks.edit', compact('trick', 'labels'));
+        }
     }
 
     /**
@@ -126,7 +128,6 @@ class TrickController extends Controller
     public function destroy(Trick $trick)
     {
         // Delete the specified trick
-        //hier komt de verbinding met het label
         $labels = TrickLabel::query()->where('trick_id', $trick->id)->get();
         foreach ($labels as $label) {
             $label->delete();
