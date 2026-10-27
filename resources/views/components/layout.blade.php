@@ -25,6 +25,9 @@
             <x-navlink href="{{ route('tricks.create') }}">Add Your Trick</x-navlink>
             <x-navlink href="{{ route('contact') }}">Contact</x-navlink>
             <x-navlink href="{{ route('about') }}">About</x-navlink>
+            @auth()
+                <x-navlink href="{{ route('admin.index') }}">Admin</x-navlink>
+            @endauth
             <div class="flex-grow"></div>
             @auth
                 <form action="{{ route('logout') }}" method="POST">

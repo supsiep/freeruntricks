@@ -17,4 +17,8 @@ class Trick extends Model
     {
         return $this->belongsToMany(Label::class, 'trick_labels');
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

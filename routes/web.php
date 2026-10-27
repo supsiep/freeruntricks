@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrickController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('tricks/{trick}', [TrickController::class, 'destroy'])->name('tricks.destroy');
 });
 Route::get('/tricks/{trick}', [TrickController::class, 'show'])->name('tricks.show');
+
+//admin
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+});
