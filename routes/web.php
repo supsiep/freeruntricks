@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MyProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrickController;
 use Illuminate\Support\Facades\Route;
@@ -43,4 +44,9 @@ Route::middleware('auth')->group(function () {
 //admin
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/myprofile/{id}', [MyProfileController::class, 'edit'])->name('myprofile.edit');
+    Route::patch('/myprofile/{id}', [MyProfileController::class, 'update'])->name('myprofile.update');
 });

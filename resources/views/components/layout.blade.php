@@ -46,7 +46,7 @@
                         $name .= $userName[$i];
                     }
                 @endphp
-                <p class="nav"> {{ $name }}...</p>
+                <a href="{{ route('myprofile.edit', auth()->user()->id) }}" class="nav"> {{ $name }}...</a>
             @endauth
 
             @guest
