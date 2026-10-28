@@ -78,7 +78,7 @@ class TrickController extends Controller
     public function show(Trick $trick)
     {
         // Display the specified trick
-        $trick->load('comments');
+        $trick->load('comments.user');
         return view('tricks.show', compact('trick'));
     }
 

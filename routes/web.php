@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrickController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,9 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/tricks/{trick}', [TrickController::class, 'show'])->name('tricks.show');
 
+Route::middleware('auth')->group(function () {
+    Route::post('/tricks/{trick}/comments', [CommentController::class, 'store'])->name('comments.store');
+});
 //admin
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');

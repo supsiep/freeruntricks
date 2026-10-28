@@ -32,8 +32,17 @@
             <!-- comments van de trick -->
             <div class="show-comments-container">
                 <h2>Comments</h2>
+                <form action="{{ route('comments.store', $trick->id) }}" method="POST">
+                    @csrf
+                    <textarea style="width: 100%; height: 100px;" type="text" name="comment" id="comment" value="{{ old('comment') }}"></textarea>
+                    <input type="hidden" name="trick_id" id="trick_id" value="{{ $trick->id }}">
+                    <button class="submit-button" type="submit">Add Comment</button>
+                </form>
                 @forelse($trick->comments as $comment)
-                    <p>{{ $comment->text }}</p>
+                    <div style="padding: 10px 0;">
+                        <p>{{ $comment->user->name }}:</p>
+                        <p>{{ $comment->text }}</p>
+                    </div>
                 @empty
                     <p>No comments yet.</p>
                @endforelse
