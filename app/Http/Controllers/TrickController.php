@@ -7,6 +7,7 @@ use App\Models\Label;
 use App\Models\Trick;
 use App\Models\TrickLabel;
 use Illuminate\Http\Request;
+use function Laravel\Prompts\confirm;
 
 class TrickController extends Controller
 {
@@ -43,8 +44,21 @@ class TrickController extends Controller
     public function create()
     {
         // Show the form for creating a new trick
-        $labels = Label::all();
-        return view('tricks.create', compact('labels'));
+
+        //check voor 3 keer hebben gecomment
+        if (auth()->check()) {
+            $userId = auth()->user()->id;
+            $commentCount = Comment::query()->where('user_id', $userId)->count();
+
+            if ($commentCount == 3) {
+                $labels = Label::all();
+                return view('tricks.create', compact('labels'));
+            } else {
+                return redirect()->route('tricks.index')->with('error', 'You do not have permission to create tricks. You need to have 3 comments posted!');
+            }
+        }
+
+
     }
 
     /**
@@ -150,10 +164,8 @@ class TrickController extends Controller
     public function status(Trick $trick) {
         $trick->status = $trick->status === 1 ? 0 : 1;
         $trick->save();
-        if (auth()->user()->role === 'admin') {
-            return redirect()->route('admin.index');
-        }
-        return redirect()->route('tricks.index');
+
+        return redirect()->back();
     }
 }
 

@@ -1,6 +1,14 @@
 <x-layout>
+
     <section class="main-content">
-        <h1>FreeRun Tricks</h1>
+
+        @if(session('error'))
+                        <p style="color: red;" class="error">{{ session('error') }}</p>
+{{--            <script>--}}
+{{--                alert("{{ session('error') }}");--}}
+{{--            </script>--}}
+        @endif
+            <h1>FreeRun Tricks</h1>
 
         <div class="view-container">
                 <form class="search-form" action="" method="GET">

@@ -51,7 +51,7 @@ nav {
     gap: 5vw;
 }
 
-a.nav {
+.nav {
     color: black;
     font-optical-sizing: auto;
     font-weight: 500;

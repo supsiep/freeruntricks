@@ -22,11 +22,13 @@
     <nav>
         <div class="nav-container">
             <x-navlink href="{{ route('tricks.index') }}">Tricks</x-navlink>
-            <x-navlink href="{{ route('tricks.create') }}">Add Your Trick</x-navlink>
+            <x-navlink href="{{ route('tricks.create') }}">Add</x-navlink>
             <x-navlink href="{{ route('contact') }}">Contact</x-navlink>
             <x-navlink href="{{ route('about') }}">About</x-navlink>
             @auth()
-                <x-navlink href="{{ route('admin.index') }}">Admin</x-navlink>
+                @if(auth()->user()->role === 'admin')
+                    <x-navlink href="{{ route('admin.index') }}">Admin</x-navlink>
+                @endif
             @endauth
             <div class="flex-grow"></div>
             @auth
@@ -36,7 +38,17 @@
                         <button type="submit">Logout</button>
                     </x-navlink>
                 </form>
+                @php
+                    $userName = auth()->user()->name;
+                    $name = '';
+                     $userName = str_split($userName);
+                    for ($i = 0; $i < 5; $i++) {
+                        $name .= $userName[$i];
+                    }
+                @endphp
+                <p class="nav"> {{ $name }}...</p>
             @endauth
+
             @guest
                 <x-navlink href="{{ route('login') }}">Login</x-navlink>
                 <x-navlink href="{{ route('register') }}">Register</x-navlink>
