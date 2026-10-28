@@ -25,39 +25,25 @@
         </div>
 
         @foreach($tricks as $trick)
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%; background: #ff750f">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%; background: #F3F4F6; padding: 20px; border: black 2px solid;">
                 <p>Trick: {{ $trick->name }}</p>
                 <p>User: {{$trick->user->name}}</p>
                 <p>User ID: {{$trick->user->id}}</p>
                 <div style="flex-grow: 1;"></div>
-                <a href="{{ route('tricks.show', $trick->id) }}">View Details</a>
-                <a href="{{ route('tricks.edit', $trick->id) }}">Edit</a>
-                <a href="{{ route('tricks.destroy', $trick->id) }}" onclick="return confirm('Are you sure you want to delete this trick?')">Delete</a>
-                @if($trick->status == 1)
-                    <p>Status: Active</p>
-                @else
-                    <p>Status: Inactive</p>
-                @endif
+                <a class="submit-button" href="{{ route('tricks.show', $trick->id) }}">View Details</a>
+                <a class="submit-button" href="{{ route('tricks.edit', $trick->id) }}">Edit</a>
+                <form action="{{ route('tricks.destroy', $trick->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="submit-button" type="submit" onclick="return confirm('Are you sure you want to delete this trick?')">Delete</button>
+                </form>
+                <form action="{{ route('tricks.status', $trick->id) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <button class="submit-button">{{ $trick->status === 1 ? 'Deactivate' : 'Activate' }}</button>
+                </form>
             </div>
         @endforeach
-
-
-        <div class="tricks-container">
-
-
-{{--                    <a href="{{ route('tricks.show', $trick->id) }}">--}}
-{{--                        <div class="trick-card">--}}
-
-{{--                            <img class="card-image" src="{{ Storage::url($trick->image) }}" alt="{{ $trick->name }}">--}}
-{{--                            <div class="trick-info-container">--}}
-{{--                                <h2 class="card-name">{{ $trick->name }}</h2>--}}
-{{--                                <p class="card-text">{{ $trick->description }}</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </a>--}}
-
-
-        </div>
 
     </section>
 

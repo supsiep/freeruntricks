@@ -87,6 +87,10 @@ class TrickController extends Controller
      */
     public function edit(Trick $trick)
     {
+        if (auth()->user()->role === 'admin') {
+            $labels = Label::all();
+            return view('tricks.edit', compact('trick', 'labels'));
+        }
         if (auth()->id() !== $trick->user_id) {
             abort(404);
         } else {
@@ -139,4 +143,18 @@ class TrickController extends Controller
         $trick->delete();
         return redirect()->route('tricks.index');
     }
+
+    /**
+     * Update the status of the specified resource.
+     */
+    public function status(Trick $trick) {
+        $trick->status = $trick->status === 1 ? 0 : 1;
+        $trick->save();
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin.index');
+        }
+        return redirect()->route('tricks.index');
+    }
 }
+
+
