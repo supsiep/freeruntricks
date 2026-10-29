@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::patch('/myprofile/{id}/password', [MyProfileController::class, 'updatePassword'])->name('myprofile.update-password');
+    Route::patch('/myprofile/{id}', [MyProfileController::class, 'updateInfo'])->name('myprofile.update-info');
     Route::get('/myprofile/{id}', [MyProfileController::class, 'edit'])->name('myprofile.edit');
-    Route::patch('/myprofile/{id}', [MyProfileController::class, 'update'])->name('myprofile.update');
 });
